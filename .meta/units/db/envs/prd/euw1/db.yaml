@@ -1,0 +1,25 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: rds-instance-sample
+spec:
+  forProvider:
+    dbInstanceClass: <DB_CLASS>
+    masterUsername: <MASTER_USERNAME>
+    allocatedStorage: 20
+    engine: <ENGINE>
+    engineVersion: <ENGINE_VERSION>
+    skipFinalSnapshotBeforeDeletion: true
+    dbSubnetGroupName: <DB_SUBNET_GROUP_NAME>
+    vpcSecurityGroupIds:
+    - <DB_SECURITY_GROUP_ID>
+    dbName: <DATABASE_NAME>
+    region: <AWS_REGION>
+    deleteAutomatedBackups: false
+    publiclyAccessible: false
+    storageEncrypted: true
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: aws-rds-conn
+  providerConfigRef:
+    name: aws-provider
