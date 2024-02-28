@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tetris-deployment
+  name: nginx-deployment
   labels:
-    app: tetris
+    app: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tetris
+      app: nginx
   template:
     metadata:
       labels:
-        app: tetris
+        app: nginx
     spec:
       containers:
-      - name: tetris
-        image: bsord/tetris:0.5.5
+      - name: nginx
+        image: nginx:alpine3.18-slim
         ports:
         - containerPort: 80
